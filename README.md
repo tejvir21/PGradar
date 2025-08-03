@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+# PG Radar Application
+A platform to search, discover, and visualize Paying Guest (PG) accommodations across locations, featuring map visualization, search with async suggestions, detailed info, and more.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# PG Radar Client
 
-## Available Scripts
+A React frontend that shows Paying Guest accommodations on an interactive map with search and detail views.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Async search with suggestions
+- Leaflet map with clustered markers showing all PG locations
+- Popup with PG info on marker click
+- Side panel showing details of selected PG
+- Responsive layout with Tailwind CSS
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Requirements
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Node.js v14+
+- npm or yarn
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repo and navigate to the client folder:
 
-### `npm run build`
+```
+git clone https://github.com/tejvir21/PGradar.git
+cd pgradar
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Install dependencies:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+npm install
 
-### `npm run eject`
+or
+yarn install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Create `.env` file to configure API base URL:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+REACT_APP_API_BASE_URL=http://localhost:5000/api
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+4. Start development server:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+npm start
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+or
+yarn start
+```
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+5. Open your browser at `http://localhost:3000`
 
-### Analyzing the Bundle Size
+## Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Use Search Bar to find PGs by name.
+- See all PG locations as clustered markers on the map.
+- Click markers or select from search to view details.
+- Responsive design supports desktop and mobile.
 
-### Making a Progressive Web App
+## Important Notes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Import Leaflet CSS in your app entry point:
 
-### Advanced Configuration
+```
+import 'leaflet/dist/leaflet.css';
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+- Place your marker icon files (`default-marker.png`, `selected-marker.png`, `marker-shadow.png`) in the `public/` folder.
+- PG coordinate format must be `[latitude, longitude]`.
+- Map container must have explicit height (`height: 500px` or via Tailwind).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Commands
 
-### `npm run build` fails to minify
+| Command         | Description                 |
+| --------------- | ---------------------------|
+| `npm install`   | Install dependencies        |
+| `npm start`     | Start dev server            |
+| `npm run build` | Create production build     |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Troubleshooting
+
+- If map or markers don't appear, ensure Leaflet CSS and images are loaded.
+- Coordinates with incorrect order cause markers to appear misplaced.
+- Use console to check API response and React errors.
+
+## License
+
+MIT © Tejvir Chauhan
