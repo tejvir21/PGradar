@@ -27,7 +27,7 @@ function SearchBar() {
       onChange={(opt) => opt && handleSelect(opt.value)}
       placeholder="Search PG by name…"
       aria-label="Search"
-      className="mb-2 z-50 relative"
+      className="mb-2 relative z-50"
     />
   );
 }

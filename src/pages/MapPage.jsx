@@ -20,18 +20,18 @@ export default function MapPage() {
   }, [dispatch]);
 
   return (
-    <div className="container mx-auto my-4 relative z-0 pb-12">
+    <div className="container mx-auto my-4 mb-12 scrollbar-none overflow-hidden">
       <SearchBar
         onSelectPG={(id) => {
           dispatch(setSelectedPG(pgs.find((pg) => pg._id === id)));
         }}
       />
 
-      <div className="flex flex-col md:flex-row flex-wrap relative z-0 gap-4 overflow-hidden">
+      <div className="flex flex-col md:flex-row flex-wrap gap-4">
         <div className="flex-1 min-w-0">
           <MapView />
         </div>
-        <div className="w-full md:w-96 flex-shrink-0 relative z-0">
+        <div className="w-full md:w-96 flex-shrink-0">
           <PGDetail pg={selectedPG} />
         </div>
       </div>

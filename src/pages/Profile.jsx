@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { apiFetch, getToken, clearToken } from "../utils/api";
 import { useNavigate } from "react-router-dom";
+import ProfileCard from "../components/ProfileCard";
 
 function Profile() {
   const { t } = useTranslation();
@@ -15,6 +16,7 @@ function Profile() {
     password: "",
     confirmPassword: "",
   });
+  const [editProfile, setEditProfile] = useState(false);
   const [error, setError] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const [loading, setLoading] = useState(false);
@@ -73,7 +75,7 @@ function Profile() {
       if (form.password) updateData.password = form.password;
 
       const updatedUser = await apiFetch(
-        "/auth/profile",
+        "/user/profile",
         {
           method: "PUT",
           body: JSON.stringify(updateData),
@@ -83,6 +85,7 @@ function Profile() {
 
       setUser(updatedUser);
       setSuccessMsg(t("Profile updated successfully"));
+      setEditProfile(false);
     } catch (err) {
       setError(err.message || t("Failed to update profile"));
     } finally {
@@ -99,8 +102,16 @@ function Profile() {
     return <div className="text-center mt-20">{t("Loading profile...")}</div>;
   }
 
+  if (!editProfile) {
+    return (
+      <div className="max-w-md mx-auto mt-6">
+        <ProfileCard user={user} setEditProfile={setEditProfile} handleLogout={handleLogout} />
+      </div>
+    );
+  }
+
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded shadow mt-10">
+    <div className="max-w-md mx-auto my-6 p-6 bg-white rounded shadow overflow-hidden relative z-0">
       <h1 className="text-2xl font-semibold mb-4">{t("Profile")}</h1>
       {error && <div className="mb-4 text-red-600">{error}</div>}
       {successMsg && <div className="mb-4 text-green-600">{successMsg}</div>}

@@ -40,7 +40,7 @@ function MapView() {
       center={[28.541334379458988, 77.33832605817665]}
       zoom={13}
       scrollWheelZoom
-      style={{ height: "70vh", width: "100%" }}
+      style={{ height: "70vh", width: "100%", zIndex: 0 }}
     >
       <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
 

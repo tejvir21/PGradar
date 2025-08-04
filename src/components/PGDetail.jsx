@@ -20,7 +20,7 @@ function PGDetail() {
     );
 
   return (
-    <aside className="p-6 bg-white shadow-lg rounded-lg max-w-md mx-auto relative z-0">
+    <aside className="p-6 bg-white shadow-lg rounded-lg max-w-md mx-auto mb-12">
       {/* Image */}
       {pg.images && pg.images.length > 0 ? (
         <img
@@ -45,35 +45,44 @@ function PGDetail() {
         <span className="truncate">{pg.contact}</span>
       </p>
 
-      {/* Amenities */}
-      {pg.amenities && pg.amenities.length > 0 && (
-        <div className="my-2">
-          <div className="text-gray-600 font-semibold mb-1">Amenities</div>
-          <ul className="flex flex-wrap gap-2">
-            {pg.amenities.map((a, i) => (
-              <li
-                key={i}
-                className="inline-flex items-center bg-blue-50 text-blue-700 px-2 py-1 rounded-full text-xs font-medium"
-              >
-                <FaRegCheckCircle className="mr-1 text-blue-400" />
-                {a}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {localStorage.getItem("jwt") && pg && (
+        <>
+          {/* Amenities */}
+          {pg.amenities?.length > 0 && (
+            <div className="my-2">
+              <div className="text-gray-600 font-semibold mb-1">Amenities</div>
+              <ul className="flex flex-wrap gap-2">
+                {pg.amenities.map((a) => (
+                  <li
+                    key={a}
+                    className="inline-flex items-center bg-blue-50 text-blue-700 px-2 py-1 rounded-full text-xs font-medium"
+                  >
+                    <FaRegCheckCircle className="mr-1 text-blue-400" />
+                    {a}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
-      {/* Price & Rating */}
-      <div className="flex items-center justify-between my-3">
-        <span className="flex items-center text-lg font-semibold text-green-700">
-          <FaRupeeSign className="mr-1" /> {pg.price}/mo
-        </span>
-        {typeof pg.rating === "number" && (
-          <span className="flex items-center text-yellow-500 font-medium">
-            <FaRegStar className="mr-1" /> {pg.rating.toFixed(1)}
-          </span>
-        )}
-      </div>
+          {/* Price & Rating */}
+          <div className="flex items-center justify-between my-3">
+            <span className="flex items-center text-lg font-semibold text-green-700">
+              <FaRupeeSign className="mr-1" /> {pg.price}/mo
+            </span>
+            {typeof pg.rating === "number" && (
+              <span className="flex items-center text-yellow-500 font-medium">
+                <FaRegStar className="mr-1" /> {pg.rating.toFixed(1)}
+              </span>
+            )}
+          </div>
+          <p>
+            <strong>Last Updated On:</strong> {pg.updatedAt
+              ? new Date(pg.updatedAt).toLocaleDateString()
+              : "No data available"}
+          </p>
+        </>
+      )}
 
       {/* Directions Button */}
       <button
