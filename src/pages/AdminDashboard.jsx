@@ -7,6 +7,7 @@ import AnalyticsChartPage from "./AnalyticsChart"; // Your analytics component
 import AdminPGManager from "../components/AdminPGManager";
 import AdminUserManager from "../components/AdminUserManager";
 import AdminFeedbackManager from "../components/AdminFeedbackManager";
+import ServerLogs from "../components/ReqResLogs";
 
 export default function AdminDashboard() {
   const { t } = useTranslation();
@@ -90,6 +91,13 @@ export default function AdminDashboard() {
         </h2>
         <AdminFeedbackManager />
       </section>) : null}
+
+      <section className="bg-white shadow rounded p-6">
+        <h2 className="text-2xl font-semibold mb-4">
+          {t("Server Logs")}
+        </h2>
+        <ServerLogs />
+      </section>
     </div>
   );
 }

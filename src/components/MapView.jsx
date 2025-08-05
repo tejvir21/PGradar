@@ -76,9 +76,15 @@ function MapView() {
                   <b>{pg.name}</b>
                   <br />
                   {pg.address}
-                  <br />₹{pg.price}/mo
+                  {localStorage.getItem("jwt") && pg && (
+                    <>
+                      <br />₹{pg.price}/mo
+                    </>
+                  )}
+
                   <br />
                   <button
+                  className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                     onClick={() =>
                       window.open(
                         `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`,
